@@ -43,4 +43,7 @@ with fits.open(inFile) as inF:
 plt.imshow(inData, cmap=filterColor.get(filterName), origin='lower', interpolation='none')
 plt.show()
 ```
+You are always free to play around with `vmin`, `vmax`, and `norm` properties to have a better feel of the image.
+
+
 Email us for your queries: suit@iucaa.in
