@@ -9,7 +9,7 @@ Color scheme for all the filters of SUIT
 - BB01 ![BB01](./assets/bb01.png)
 - BB02 ![BB02](./assets/bb02.png)
 - BB03 ![BB03](./assets/bb03.png)
-- NB01 ![NB01](./assets/bb03.png)
+- NB01 ![NB01](./assets/nb01.png)
 - NB02 ![NB02](./assets/nb02.png)
 - NB03 ![NB03](./assets/nb03.png)
 - NB04 ![NB04](./assets/nb04.png)
