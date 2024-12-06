@@ -31,7 +31,7 @@ When applying the color scheme to your plots, you need to add cmap and norm.
 ```python
 
 from astropy.io import fits
-import matplotlib.pytplot as plt
+import matplotlib.pyplot as plt
 #Load the data
 
 inFile = '<input SUIT fits file>'

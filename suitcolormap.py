@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 
+from matplotlib import colors
 from matplotlib.colors import LinearSegmentedColormap, PowerNorm
 import matplotlib.pyplot as plt
 from astropy.io import fits
 import glob
+import numpy as np
 
 def make_cmap(col_ls, pos_ls=None):
     if (pos_ls != None):
