@@ -26,7 +26,7 @@ Load the suitcolormap.py file to your python code
 from suitcolormap import *
 ```
 
-When applying the color scheme to your plots, you need to add cmap and norm.
+When applying the color scheme to your plots, you need to add the cmap.
 
 ```python
 
@@ -39,10 +39,8 @@ with fits.open(inFile) as inF:
 	inData = inF[0].data
 	filterName = inF[0].header['FTR_NAME'] #Get the filter name from the headers
 
-#Load the norm
-suitnorm = img_norm(inData).get(filterName)
 #plot the image
-plt.imshow(inData, cmap=filterColor.get(filterName), origin='lower', interpolation='none', norm = suitnorm)
+plt.imshow(inData, cmap=filterColor.get(filterName), origin='lower', interpolation='none')
 plt.show()
 ```
 Email us for your queries: suit@iucaa.in

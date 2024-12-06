@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
-from matplotlib import colors
-from matplotlib.colors import LinearSegmentedColormap, PowerNorm
+from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
 from astropy.io import fits
 import glob
@@ -13,24 +12,6 @@ def make_cmap(col_ls, pos_ls=None):
     else:
         cmap= LinearSegmentedColormap.from_list("CustomGradient1", col_ls)
     return(cmap)
-
-def img_norm(a):
-    a = np.array(a)
-    normValue = {}
-    sliced_array = a[(a > 2000) & (a < 50000)]
-    baseline = 1000 if len(sliced_array) == 0 else np.median(sliced_array)
-    normValue['NB01']=colors.PowerNorm(gamma=0.9,vmin=.1*baseline,vmax=3*baseline)
-    normValue['NB02']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=6*baseline)
-    normValue['NB03']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=3*baseline)
-    normValue['NB04']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=6*baseline)
-    normValue['NB05']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=3*baseline)
-    normValue['NB06']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=3*baseline)
-    normValue['NB07']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=5*baseline)
-    normValue['NB08']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=3*baseline)
-    normValue['BB01']=colors.PowerNorm(gamma=1.0,vmin=.2*baseline,vmax=3*baseline)
-    normValue['BB02']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=3*baseline)
-    normValue['BB03']=colors.PowerNorm(gamma=0.9,vmin=.2*baseline,vmax=3*baseline)
-    return normValue
 
 filterColor = {
     'BB01': make_cmap(['#000000','#35095f','#e8acf3','#ffffff'], [0, 0.26, 0.7, 1]),
