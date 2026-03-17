@@ -35,8 +35,8 @@ Example:
 ```python
 from suitcolormap import get_cmap, get_norm # Importing colormap
 from astropy.io import fits
+import matplotlib # Needed for NB05 filter colormap
 import matplotlib.pyplot as plt
-import sunpy.visualization.colormaps # Needed for NB05 filter
 # Load FITS file
 inFile = "<input SUIT fits file>"
 
