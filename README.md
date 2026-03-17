@@ -28,13 +28,15 @@ This repository provides:
 
 # Quick Usage
 
-Download `suitcolormap.py` and import:
+Download `suitcolormap.py`, place in the same directory and import.
+
+Example:
 
 ```python
-from suitcolormap import get_cmap, get_norm
+from suitcolormap import get_cmap, get_norm # Importing colormap
 from astropy.io import fits
 import matplotlib.pyplot as plt
-from suitcolormap import get_cmap, get_norm
+import sunpy.visualization.colormaps # Needed for NB05 filter
 # Load FITS file
 inFile = "<input SUIT fits file>"
 
