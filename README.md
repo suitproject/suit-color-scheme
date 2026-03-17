@@ -1,11 +1,17 @@
-![Logo](https://suit.iucaa.in/sites/default/files/top_banner_compressed_2_1.png)
+![SUIT Banner](https://suit.iucaa.in/sites/default/files/top_banner_compressed_2_1.png)
 
 # suit-color-scheme
 
+Color schemes for all filters of the SUIT (Solar Ultraviolet Imaging Telescope) instrument.
 
-Color scheme for all the filters of SUIT
+This repository provides:
+- Matplotlib colormaps for each SUIT filter
+- Recommended normalization for scientifically meaningful visualization
 
-# Colormap
+---
+
+# Colormaps
+
 - BB01 ![BB01](./assets/bb01.png)
 - BB02 ![BB02](./assets/bb02.png)
 - BB03 ![BB03](./assets/bb03.png)
@@ -18,32 +24,34 @@ Color scheme for all the filters of SUIT
 - NB07 ![NB07](./assets/nb07.png)
 - NB08 ![NB08](./assets/nb08.png)
 
-# Quick Guide
+---
 
-Load the suitcolormap.py file to your python code
+# Quick Usage
 
-```python
-from suitcolormap import *
-```
-
-When applying the color scheme to your plots, you need to add the cmap.
+Download `suitcolormap.py` and import:
 
 ```python
-
+from suitcolormap import get_cmap, get_norm
 from astropy.io import fits
 import matplotlib.pyplot as plt
-#Load the data
+from suitcolormap import get_cmap, get_norm
+# Load FITS file
+inFile = "<input SUIT fits file>"
 
-inFile = '<input SUIT fits file>'
-with fits.open(inFile) as inF:
-	inData = inF[0].data
-	filterName = inF[0].header['FTR_NAME'] #Get the filter name from the headers
+with fits.open(inFile) as hdul:
+    data = hdul[0].data
+    filter_name = hdul[0].header["FTR_NAME"]
 
-#plot the image
-plt.imshow(inData, cmap=filterColor.get(filterName), origin='lower', interpolation='none')
+# Get colormap and normalization
+cmap = get_cmap(filter_name)
+norm = get_norm(data, filter_name)
+
+# Plot
+plt.imshow(data, cmap=cmap, norm=norm, origin="lower")
+plt.colorbar()
+plt.title(filter_name)
 plt.show()
 ```
-You are always free to play around with `vmin`, `vmax`, and `norm` properties to have a better feel of the image.
 
 
-Email us for your queries: suit@iucaa.in
+
