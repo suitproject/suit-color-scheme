@@ -8,9 +8,9 @@ normalization function required for correct visual representation.
 
 Usage
 -----
->>> from suitcolormap import get_cmap, get_norm
->>> cmap = get_cmap("NB03")
->>> norm = get_norm(data, "NB03")
+>>> from suitcolormap import suit_cmap, suit_norm
+>>> cmap = suit_cmap("NB03")
+>>> norm = suit_norm(data, "NB03")
 
 Notes
 -----
@@ -49,7 +49,7 @@ SUIT_CMAPS = {
 }
 
 
-def get_cmap(filter_name):
+def suit_cmap(filter_name):
     """
     Return the SUIT colormap for a given filter.
 
@@ -65,7 +65,7 @@ def get_cmap(filter_name):
     return SUIT_CMAPS[filter_name]
 
 
-def get_norm(data, filter_name):
+def suit_norm(data, filter_name):
     """
     Return recommended normalization for a SUIT filter.
 

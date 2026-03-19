@@ -7,10 +7,9 @@ Color schemes for all filters of the SUIT (Solar Ultraviolet Imaging Telescope) 
 This repository provides:
 - Matplotlib colormaps for each SUIT filter
 - Recommended normalization for scientifically meaningful visualization
-
 ---
 
-# Colormaps
+## Available Colormaps
 
 - BB01 ![BB01](./assets/bb01.png)
 - BB02 ![BB02](./assets/bb02.png)
@@ -26,17 +25,30 @@ This repository provides:
 
 ---
 
-# Quick Usage
+## Installation
 
 Download `suitcolormap.py`, place in the same directory and import.
 
-Example:
+## Dependencies
+
+This package requires the following Python libraries:
+- `numpy`
+- `matplotlib`
+- `astropy` (for FITS file handling)
+- `sunpy` (for `SUITMap` integration)
+
+## Usage
+
+### Basic Usage
+
+Here is a quick example of how to use the colormaps and normalization with a FITS file.
 
 ```python
-from suitcolormap import get_cmap, get_norm # Importing colormap
+from suitcolormap import suit_cmap, suit_norm
 from astropy.io import fits
 import matplotlib # Needed for NB05 filter colormap
 import matplotlib.pyplot as plt
+
 # Load FITS file
 inFile = "<input SUIT fits file>"
 
@@ -45,15 +57,42 @@ with fits.open(inFile) as hdul:
     filter_name = hdul[0].header["FTR_NAME"]
 
 # Get colormap and normalization
-cmap = get_cmap(filter_name)
-norm = get_norm(data, filter_name)
+cmap = suit_cmap(filter_name)
+norm = suit_norm(data, filter_name)
 
-# Plot
+# Plot the data
 plt.imshow(data, cmap=cmap, norm=norm, origin="lower")
 plt.colorbar()
 plt.title(filter_name)
 plt.show()
 ```
 
+# With SunPy
+
+The SUITMap is now part of the sunpy python package. If you are plotting with SUITMap,
+Then, you can plot with `sunpy`'s plot functions. We recommend not to use the `peek` function in sunpy.
+
+Additionally, when generating plots, apply the normalization (norm) associated with the `suitcolormap` to ensure consistent and accurate visualization.
+
+Here is an example usage.
 
 
+```python
+from suitcolormap import suit_norm
+import sunpy.map
+import matplotlib.pyplot as plt 
+
+file = <SUIT fits file path>
+suit_map = sunpy.map.Map(file)
+
+filter_name = suit_map.meta['FTR_NAME'] # Filter name fetching from headers
+fig = plt.figure()
+ax = fig.add_subplot(projection=suit_map)
+suit_map.plot(axes=ax, norm=suit_norm(suit_map.data, filter_name))
+plt.show()
+
+```
+
+This will apply the norm defined by suitcolormap.
+
+For any queries, contact: suit@iucaa.in
